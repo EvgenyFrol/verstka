@@ -1,0 +1,46 @@
+include data.pug
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width initial-scale=1")
+    script
+      include ../js/jquery-3.4.1.js
+
+  body
+    include ../components/header.pug
+
+    section.banner
+      .banner__wrapper.baseContainer
+        .banner__card
+          h2.banner__title Трактир «Пушкин» 
+          .banner__descWrapper
+            p.banner__desc ₽₽₽ • Европейская
+            .banner__deliWrapper
+              p.banner__deli 40 - 50 минут
+
+    section.menu 
+      .menu__wrapper.baseContainer
+        each item in menu
+          a.menu__dishes(href="#")= item.type
+
+    section.dishes
+      .dishes__wrapper.baseContainer
+        h3.dishes__typeTitle Закуски
+        .dishes__items
+          each item in dishes
+            a.dishes__link(href="#")
+              .dishes__foodCard
+                .dishes__describe
+                  h4.dishes__title= item.title
+                  if item.desc
+                    p.dishes__desc= item.desc
+                  p.dishes__price= item.price
+                .dishes__foodcardImage
+                  img.dishes__image(src= item.image alt="dishes__img")
+
+    include ../components/footer.pug
+
+    button.scrollTo(href="#")
+      img.scrollToImage(src="/images/button__up.png")

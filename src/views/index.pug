@@ -1,0 +1,36 @@
+include data.pug
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width initial-scale=1")
+    script
+      include ../js/jquery-3.4.1.js
+
+  body
+    include ../components/header.pug
+  
+    section.search
+      .search__wrapper
+        input.search__input(type="text" placeholder="Поиск по ресторанам и кухням" alt="input__search" name="searcher" )
+
+    section.menuFood
+      .menuFood__wrapper
+        h1.menuFood__title.title Рестораны в Москве
+        .menuFood__foodCardContent
+          each item in foodCards
+            .menuFood__foodCardCenter
+              .menuFood__foodCard
+                a.menuFood__detal(href="/detal.html")
+                  figure
+                    img.menuFood__foodCardImage(src= item.image, alt= item.title)
+                    figcaption
+                      h2.menuFood__foodCardTitle= item.title
+                      p.menuFood__foodCardDescription= item.desc
+                      p.menuFood__foodCardDelivery= item.delivery
+
+    include ../components/footer.pug
+
+    button.scrollTo(href="#")
+      img.scrollToImage(src="/images/button__up.png")
